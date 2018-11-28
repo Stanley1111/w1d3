@@ -22,4 +22,3 @@ function countLetters (someString) {
   return letterCount;
 }
 
-countLetters("lighthouse in the house");
