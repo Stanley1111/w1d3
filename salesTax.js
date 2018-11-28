@@ -31,6 +31,7 @@ function calculateSalesTax(salesData, taxRates) {
   //iterate thru salesData
   for (var i = 0; i < salesData.length; i++){
     //check for duplicate company name
+    //if company name not found in report
     if (!report[salesData[i].name]){
       report[salesData[i].name] = {};
 
@@ -38,11 +39,16 @@ function calculateSalesTax(salesData, taxRates) {
       for (var j = 0; j < salesData[i].sales.length; j++){
         sumSales += salesData[i].sales[j];
       }
+      //assign sum of sales to report
       report[salesData[i].name].totalSales = sumSales;
 
+      //get the province of the company
       var province = salesData[i].province;
+
+      //enter the total tax to report
       report[salesData[i].name].totalTaxes = sumSales * taxRates[province];
 
+      //reset the sumSales variable for next element in salesData
       sumSales = 0;
     }
     else {
@@ -59,6 +65,7 @@ function calculateSalesTax(salesData, taxRates) {
   }
 
   console.log(report);
+  return report;
 }
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);

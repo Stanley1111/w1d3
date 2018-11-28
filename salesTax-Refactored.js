@@ -45,13 +45,12 @@ function calculateSalesTax(salesData, taxRates) {
     //get the province of the company
     province = salesData[i].province;
 
+    //calculate the total sales
+    sumSales = sumArray(salesData[i].sales);
     //check for duplicate company name
     //if company name not found in report
     if (!report[salesData[i].name]){
       report[salesData[i].name] = {};
-
-      //loop thru sales and sum
-      sumSales = sumArray(salesData[i].sales);
 
       //assign sum of sales to report
       report[salesData[i].name].totalSales = sumSales;
@@ -61,7 +60,6 @@ function calculateSalesTax(salesData, taxRates) {
 
     }
     else {
-      sumSales = sumArray(salesData[i].sales)
 
       report[salesData[i].name].totalSales += sumSales;
 
